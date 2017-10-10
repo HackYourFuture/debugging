@@ -71,12 +71,12 @@ at where our program got infected.
 
 A defect will always result in one or multiple infections. Remember that an
 infection is some program state that is different from what we intended it to
-be. The program state (or state, in short) consists of all the variables and
+be. The program state (or state) consists of all the variables and
 their contents. 
 
 **Questions:**
 1. In the code we're currently debugging, what is the state?
-2. Why would we want to look at the state? How does that help us get closed to
+2. Why would we want to look at the state? How does that help us get closer to
    the defect?
 3. We can look at the state using `console.log`. Where should we write a
    `console.log` line?
@@ -118,7 +118,7 @@ the `result` variable is now infected as well.
 ## Defects
 
 Why would `index` become `3` in the first place? If we can answer that question
-we get close to the defect. Let's look at what the `for` loop does:
+we get closer to the defect. Let's look at what the `for` loop does:
 
 ```javascript
 for (let index = 0; index <= elements.length; index++)
@@ -127,7 +127,7 @@ for (let index = 0; index <= elements.length; index++)
 A `for` loop is a very useful construct but also quite complicated. We can think
 of a `for` loop as a specific kind of `while` loop.
 
-**Question:** how do we write the `for` loop in terms of a `while` loop?
+**Question:** how could we write the `for` loop in terms of a `while` loop?
 
 ```javascript
 let index = 0;
@@ -172,7 +172,7 @@ correspond with the 3rd element in the array, but arrays in javascript start
 counting at `0`. The 3rd element corresponds to the `index` variable being
 equal to `2`.*
 
-**QUESTION:** If there has never been a failure in your program does that mean
+**Question:** if there has never been a failure in your program does that mean
 that there are no defects in it? Motivate your answer.
 
 ## Simplifying input
