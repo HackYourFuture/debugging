@@ -7,9 +7,9 @@ programmers. Learning how to debug a program is an essential skill for any
 programmer. Throughout the entire curriculum you will get homework/exercises
 that require you to fix buggy programs.
 
-So what is a bug? A bug lets a program do something it was not intended to do.
-But that definition is rather vague. Let's break it down. Following Zeller<sup>1</sup>
-a bug consist of three distinct parts:
+What is a bug? A bug lets a program do something it was not intended to do. But
+that definition is rather vague. Let's break it down. Following
+Zeller<sup>1</sup> a bug consist of three distinct parts:
 
 1. A **defect** - "a piece of code that can cause an infection."<sup>1</sup>
 <br/>
@@ -69,16 +69,28 @@ at where our program got infected.
 
 A defect will always result in one or multiple infections. Remember that an
 infection is some program state that is different from what we intended it to
-be. Program state consists of all the variables and their contents. In our hello
-wordl program our state is `index`, `elements`, and `result`. So, to find the
-defect we first need to look at the program state to see what got infected. To
-do this we add a `console.log` line to our code where we let the program write
-down our state every time we do a lookup in the `elements` array.
+be. The program state (or state, in short) consists of all the variables and
+their contents. 
+
+**Questions:**
+1. In the code we're currently debugging, what is the state?
+2. Why would we want to look at the state? How does that help us get closed to
+   the defect?
+3. We can look at the state using `console.log`. Where should we write a
+   `console.log` line?
+4. What state should we log?
+5. What is going to be the output of our `console.log` line?
+
+To find the defect we first need to look at the state to see what got infected.
+To do this we add a `console.log` line to our code where we let the program
+write down our state every time we do a lookup in the `elements` array.
 
 ```javascript
 result += elements[index];
 console.log("index: " + index + " element: " + elements[i] + " result: " + result);
 ```
+
+After we run the program the output of our `console.log` looks like this:
 
 ```javascript
 "index i: 0 element: hack result: hack"
@@ -88,9 +100,15 @@ console.log("index: " + index + " element: " + elements[i] + " result: " + resul
 ```
 
 We see that at index `3` when we do a lookup in our `elements` array. The
-element isn't there and javascript gives us the `undefined` value instead. So
+element isn't there and javascript gives us the `undefined` value instead. 
+
+**Question:** Based on this information where do you think the first infection
+happened?
+
 `index++` is where the infection happens as a result of our defect, whatever
 that defect may be.
+
+**Question:** What other state got infected?
 
 Because we add `undefined` (through `result += elements[index]`) to `result`,
 the `result` variable is now infected as well.
@@ -105,7 +123,9 @@ for (let index = 0; index <= elements.length; index++)
 ```
 
 A `for` loop is a very useful construct but also quite complicated. We can think
-of a `for` loop as a specific kind of `while` loop that can be written like this:
+of a `for` loop as a specific kind of `while` loop.
+
+**Question:** how do we write the `for` loop in terms of a `while` loop?
 
 ```javascript
 let index = 0;
@@ -117,16 +137,19 @@ while(index <= elements.length) {
 
 The line `while(index <= elements.length)` prevents this program from looping
 infinitely until the end of time and instead only runs until `index` reaches a
-certain value. We know that when `index` is `3` it's infected. We also know that
-`elements.length` is also `3` because it contains three elements. We can now
-deduce that our defect is in the `index <= elements.length` statement and in
-fact it should have been:
+certain value. We know that when `index` is `3` it's infected. 
+
+**Question:** in what other place(s) do we find the number `3`?
+
+We also know that `elements.length` is also `3` because it contains three
+elements. We can now deduce that our defect is in the `index <= elements.length`
+statement and in fact it should have been:
 
 ```javascript
 index < elements.length
 ```
 
-**QUESTION:** What would the output of the following program be? Is there a bug?
+**Question:** what would the output of the following program be? Is there a bug?
 If so, what's the defect?
 
 ```javascript
@@ -141,7 +164,7 @@ console.log(result);
 *Background: These types of bugs are called off-by-one errors and are in fact
 quite common. In our first buggy program we were expecting the value `3` to
 correspond with the 3rd element in the array, but arrays in javascript start
-counting at `0`. So the 3rd element corresponds to the `index` variable being
+counting at `0`. The 3rd element corresponds to the `index` variable being
 equal to `2`.*
 
 **QUESTION:** If there has never been a failure in your program does that mean
@@ -151,7 +174,7 @@ that there are no defects in it? Motivate your answer.
 
 Often a program is big, and the defect not obvious. The program fails but you
 have no clue where to start because the program state is too big to reason
-about. So instead of frantically using `console.log` everywhere (which might
+about. Instead of frantically using `console.log` everywhere (which might
 sometimes work) we take one step back. We first simplify the input so that we
 get to a manageable state, something we can reason about. If our program still
 fails we can continue debugging. If it doesn't we need to pick different input.
