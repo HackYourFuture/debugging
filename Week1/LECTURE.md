@@ -32,10 +32,9 @@ that there must have been a source somewhere.*
 Let's look at this program. It has a defect in it:
 
 ```javascript
-// This program should print:
-// hackyourfuture
+// This program should log `hackyourfuture`
 
-const elements = ["hack", "your", "future"];
+let elements = ["hack", "your", "future"];
 let result = "";
 for (let index = 0; index <= elements.length; index++) {
     result += elements[index];
@@ -49,7 +48,7 @@ To debug our code we have to become a bit like Sherlock Holmes. We have to
 question everything. Our code is wrong and we can't trust it anymore. Be
 suspicious while debugging, it helps you get into the right mindset.
 
-Debugging always starts by reading either some error message or look at
+Debugging always starts by reading either some failure message or look at
 something you didn't expect. Now, what a lot of people do is throw their hands
 in the air and say: "aahhhh, it's not working!". Don't do that. Something is not
 working, you don't know what, but you're gonna find out. Most likely most of
@@ -158,7 +157,7 @@ If so, what's the defect?
 // This program should print:
 // hackyourfuture
 
-const elements = ["hack", "your", "future"];
+let elements = ["hack", "your", "future"];
 let result = "";
 for (let index = 1; index < elements.length; index++) {
     result += elements[index];
@@ -166,11 +165,11 @@ for (let index = 1; index < elements.length; index++) {
 console.log(result);
 ```
 
-*Background: These types of bugs are called off-by-one errors and are in fact
+*Background: These types of bugs are called off-by-one bugs and are in fact
 quite common. In our first buggy program we were expecting the value `3` to
 correspond with the 3rd element in the array, but arrays in javascript start
-counting at `0`. The 3rd element corresponds to the `index` variable being
-equal to `2`.*
+counting at `0`. The 3rd element corresponds to the `index` variable being equal
+to `2`.*
 
 **Question:** if there has never been a failure in your program does that mean
 that there are no defects in it? Motivate your answer.
