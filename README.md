@@ -50,8 +50,8 @@ issue on Github, or adding a pull request.*
 
 - To teach students how to systematically debug programs.
 - Integrate this material into the curriculum as much as possible.
-- Class is taught in a mandatoryhangout session.
-- Do actual debugging in front of the class
+- Class is taught in a mandatory hangout session.
+- Do actual debugging in front of the class.
 - Work through one of the homework examples during class. Ask them if they made
   homework, and solve it together.
 
@@ -78,4 +78,3 @@ issue on Github, or adding a pull request.*
 - Ask the teachers to add debugging assignments.
 - What version of javascript do we use? If we use ES6, we need an ES6 compatible
 debug environment as well. I'm not sure the Chrome debugger can help us there.
-
