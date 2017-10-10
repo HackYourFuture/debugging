@@ -31,6 +31,21 @@ then up to the students to find and fix the bugs.
 *Of course for us as teachers it's gonna be challenging to come up with various
  buggy programs that strike the right difficulty balance.*
 
+### Ideas of buggy programs
+
+Ideas for buggy programs for students to solve:
+
+
+#### Week 1
+
+- If, if-else, else condition as three individual if statements
+- Using an uninitialized variable
+- Attempt to add two numbers together but make one of the numbers a string
+- ...
+
+*If you have more ideas for buggy programs, please submit them by creating an
+issue on Github, or adding a pull request.*
+
 ## Requirements
 
 - To teach students how to systematically debug programs.

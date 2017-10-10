@@ -153,6 +153,9 @@ index < elements.length
 If so, what's the defect?
 
 ```javascript
+// This program should print:
+// hackyourfuture
+
 const elements = ["hack", "your", "future"];
 let result = "";
 for (let index = 1; index < elements.length; index++) {
