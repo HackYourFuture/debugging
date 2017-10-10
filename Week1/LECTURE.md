@@ -12,16 +12,18 @@ that definition is rather vague. Let's break it down. Following
 Zeller<sup>1</sup> a bug consist of three distinct parts:
 
 1. A **defect** - "a piece of code that can cause an infection."<sup>1</sup>
-<br/>
+
 *We can think of a **defect** as the source of a disease.*
+
 2. An **infection** - "a program state that is different from the programmer's
 intention."<sup>1</sup>
-<br/>
+
 *From the source of the disease an **infection** takes place. Someone will take 
 ill and in turn that person will make more and more people ill and so on.*
+
 3. A **failure** - "externally observable effect of faulty program behavior
 caused by the infection."<sup>1</sup>
-<br/>
+
 *When we notice someone took ill we know that there has been an infection and
 that there must have been a source somewhere.*
 
