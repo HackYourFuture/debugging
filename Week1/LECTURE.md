@@ -42,7 +42,7 @@ for (let index = 0; index <= elements.length; index++) {
 console.log(result);
 ```
 
-## Failures / reading errors
+## Reading failures
 
 To debug our code we have to become a bit like Sherlock Holmes. We have to
 question everything. Our code is wrong and we can't trust it anymore. Be
@@ -66,7 +66,7 @@ Quite simply we expect `hackyourfuture` to be logged but instead we got
 `hackyourfutureundefined`. This is our failure, now we need start looking
 at where our program got infected.
 
-## Infections
+## Tracking infections
 
 A defect will always result in one or multiple infections. Remember that an
 infection is some program state that is different from what we intended it to
@@ -114,7 +114,7 @@ that defect may be.
 Because we add `undefined` (through `result += elements[index]`) to `result`,
 the `result` variable is now infected as well.
 
-## Defects
+## Finding and fixing a defect
 
 Why would `index` become `3` in the first place? If we can answer that question
 we get closer to the defect. Let's look at what the `for` loop does:
