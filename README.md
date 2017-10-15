@@ -31,35 +31,50 @@ then up to the students to find and fix the bugs.
 *Of course for us as teachers it's gonna be challenging to come up with various
  buggy programs that strike the right difficulty balance.*
 
-## Notes, ideas
+### Ideas of buggy programs
 
-- Integrate into the curriculum as much as possible.
-- The ability to read and understand code is important. Maybe we can add exercises that
-emphasize both reading and debugging at the same time.
-- Do debugging in front of the class
-- Error reading, people do not try to understand the error.
-  - read the errors aloud.
-  - printf debugging.
-- Debugging as addition to every module
-- Give a master class to the HYF teachers and alumni.
-- A slack channel for debugging
-- For every assignment the student has to add a file.
-- Little programs they need to fork and fix. Clone and then pull request.
-- The student has to give a name to the file to explain what it does.
-- Add assignments on unit testing.
-- Have a bunch of unit tests that check the code of students.
-- Class in a hangout session.
-- Let them read the program line by line in class.
-- Work through one of the homework examples. Ask them if they made homework,
-  and solve it together.
-- Ask the teachers to add debugging assignments.
-- Look at the javascript 1 assignments for inspiration on writing buggy assignments.
+Ideas for buggy programs for students to solve:
+
+
+#### Week 1
+
+- If, if-else, else condition as three individual if statements
+- Using an uninitialized variable
+- Attempt to add two numbers together but make one of the numbers a string
+- ...
+
+*If you have more ideas for buggy programs, please submit them by creating an
+issue on Github, or adding a pull request.*
+
+## Requirements
+
+- To teach students how to systematically debug programs.
+- Integrate this material into the curriculum as much as possible.
+- Class is taught in a mandatory hangout session.
+- Do actual debugging in front of the class.
+- Work through one of the homework examples during class. Ask them if they made
+  homework, and solve it together.
+
+## Ideas
+
+- Use the MAKEME, README, REVIEW structure just like the other classes.
 - Unit tests with npm and Github giving the student/teacher feedback (George)
-- What IDE do they use? Brackets, Visual Studio Code, Chrome debugger
+- Use the default structure for assignments:
+    - For every assignment the student has to add a file.
+    - Little programs they need to fork and fix. Clone and then pull request.
+    - The student has to give a name to the file to explain what it does.
+- Give a master class to the HYF teachers and alumni.
+- Add assignments on unit testing.
+- Let them read the program line by line in class.
+- Look at the javascript 1 assignments for inspiration on writing buggy assignments.
+
+## Notes
+
+- Students use various IDEs: Brackets, Visual Studio Code, Chrome debugger.
 
 ## TODO
 
 - Introduce myself (Frank) to class 12 before giving a hangouts lecture.
+- Ask the teachers to add debugging assignments.
 - What version of javascript do we use? If we use ES6, we need an ES6 compatible
 debug environment as well. I'm not sure the Chrome debugger can help us there.
-- MAKEME, README, REVIEW
