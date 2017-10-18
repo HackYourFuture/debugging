@@ -187,6 +187,7 @@ summarize:
     3. An observable failure.
 3. You learned how to use `console.log` to look for infections to lead you to
    the defect.
+4. But most of all: don't panic! :)
 
 <sup>1</sup> Zeller, Andreas - Why Programs Fail, Second Edition: A Guide to
 Systematic Debugging (2009)
