@@ -1,4 +1,4 @@
-# Debugging 1
+# Debugging Lecture 1
 
 Nobody writes programs that are correct the first time around. Today we'll learn
 about debugging: the act of finding and fixing bugs in your code. In your career
