@@ -31,7 +31,7 @@ that there must have been a source somewhere.*
 
 Let's look at this program. It has a defect in it:
 
-```javascript
+```js
 // This program should log `hackyourfuture`
 
 let elements = ["hack", "your", "future"];
@@ -58,7 +58,7 @@ be hiding.
 
 Let's run our program to see what it does:
 
-```javascript
+```js
 console.log(result); // the observable failure: `hackyourfutureundefined`
 ```
 
@@ -86,18 +86,19 @@ To find the defect we first need to look at the state to see what got infected.
 To do this we add a `console.log` line to our code where we let the program
 write down our state every time we do a lookup in the `elements` array.
 
-```javascript
+```js
 result += elements[index];
 console.log("index: " + index + " element: " + elements[i] + " result: " + result);
 ```
 
 After we run the program the output of our `console.log` looks like this:
 
-```javascript
-"index i: 0 element: hack result: hack"
-"index i: 1 element: your result: hackyour"
-"index i: 2 element: future result: hackyourfuture"
-"index i: 3 element: undefined result: hackyourfutureundefined"
+```js
+index i: 0 element: hack result: hack
+index i: 1 element: your result: hackyour
+index i: 2 element: future result: hackyourfuture
+index i: 3 element: undefined result: hackyourfutureundefined
+hackyourfutureundefined
 ```
 
 We see that at index `3` when we do a lookup in our `elements` array. The
@@ -119,7 +120,7 @@ the `result` variable is now infected as well.
 Why would `index` become `3` in the first place? If we can answer that question
 we get closer to the defect. Let's look at what the `for` loop does:
 
-```javascript
+```js
 for (let index = 0; index <= elements.length; index++)
 ```
 
@@ -128,7 +129,7 @@ of a `for` loop as a specific kind of `while` loop.
 
 **Question:** how could we write the `for` loop in terms of a `while` loop?
 
-```javascript
+```js
 let index = 0;
 while(index <= elements.length) {
     result += elements[index];
@@ -146,14 +147,14 @@ We also know that `elements.length` is also `3` because it contains three
 elements. We can now deduce that our defect is in the `index <= elements.length`
 statement and in fact it should have been:
 
-```javascript
+```js
 index < elements.length
 ```
 
 **Question:** what would the output of the following program be? Is there a bug?
 If so, what's the defect?
 
-```javascript
+```js
 // This program should print:
 // hackyourfuture
 
@@ -174,21 +175,6 @@ to `2`.*
 **Question:** if there has never been a failure in your program does that mean
 that there are no defects in it? Motivate your answer.
 
-## Simplifying input
-
-Often a program is big, and the defect not obvious. The program fails but you
-have no clue where to start because the program state is too big to reason
-about. Instead of frantically using `console.log` everywhere (which might
-sometimes work) we take one step back. We first simplify the input so that we
-get to a manageable state, something we can reason about. If our program still
-fails we can continue debugging. If it doesn't we need to pick different input.
-
-*TODO Write a buggy program that uses a lots of input and state.*
-
-  - Maybe a sorting algorithm?
-  - Something that uses a stack
-  - Filtering algorithm (something that filters on a certain string)
-
 ## Summary
 
 We covered a lot of ground in this lecture, introducing many new concepts. To
@@ -201,6 +187,7 @@ summarize:
     3. An observable failure.
 3. You learned how to use `console.log` to look for infections to lead you to
    the defect.
+4. But most of all: don't panic! :)
 
 <sup>1</sup> Zeller, Andreas - Why Programs Fail, Second Edition: A Guide to
 Systematic Debugging (2009)
