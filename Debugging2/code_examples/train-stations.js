@@ -57,14 +57,14 @@ function connectedCities(city) {
 
 function connectedStation(departingCity, destinationCity) {
     const departStation = findStation(departingCity);
-    const desitinationStation = findStation(destinationCity);
-    return desitinationStation;
+    const destinationStation = findStation(destinationCity);
+    return destinationStation;
 }
 
-function distanceBetweenStationsInKm(station1, station2) {
-    const distanceStation1ToStation2 = distanceInMeters(station1.coordinates, station2.coordinates);
-    return metersToKilometers(distanceStation1ToStation2);
+function distanceBetweenStationsInMeters(station1, station2) {
+    return distanceInMeters(station1.coordinates, station2.coordinates);
 }
+
 
 const departingCity = "Utrecht";
 const destinationCity = "Arnhem";
@@ -73,5 +73,46 @@ const destinationStation = connectedStation(departingCity, destinationCity);
 console.log("Destination: ", destinationStation);
 
 const departingStation = findStation(departingCity);
-const distanceToDestinationInKm = distanceBetweenStationsInKm(destinationStation, departingStation);
-console.log("We depart from", departingCity, "travelling", distanceToDestinationInKm, "km to", destinationCity)
+const distanceToDestinationInMeters = distanceBetweenStationsInMeters(destinationStation, departingStation);
+console.log("We depart from", 
+    departingCity, 
+    "travelling", 
+    metersToKilometers(distanceToDestinationInMeters), 
+    "km to", 
+    destinationCity);
+
+
+
+function routeLengthInKm(route) {
+    if(route == 0) {
+        return 0;
+    } else {
+        let totalLengthInKm = 0;
+        for(let index = 0; index < route.length - 1; index++) {
+            const station1 = route[index];
+            const station2 = route[index + 1];
+            totalLength = totalLengthInKm + distanceBetweenStationsInMeters(station1, station2);
+            totalLength = metersToKilometers(totalLengthInKm);
+        }
+        return totalLengthInKm;
+    }
+}
+
+function routeToString(route) {
+    let routeStr = "";
+    for(let index = 0; index < route.length; index++) {
+        const station = route[index];
+        routeStr = routeStr + station.city + " ";
+    }
+    return routeStr;
+}
+
+const route = [findStation("Amsterdam"), findStation("Utrecht"), findStation("Arnhem")];
+const routeLength = routeLengthInKm(route);
+
+console.log(
+    "Our route:",
+    routeToString(route),
+    "is",
+    routeLength,
+    "km");
