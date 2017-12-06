@@ -84,7 +84,7 @@ function updateRoute(route, city) {
 
 function routes(departingCity, destinationCity) {
     if(departingCity === destinationCity) {
-        throw "Destination cannot be the same as departure."
+        throw "Destination city cannot be the same as departure city."
     }
 
     const possibleRoutes = [];
@@ -131,7 +131,7 @@ function shortestRoute(routes) {
         throw "Have to provide at least one route"
     } else {
         const currentShortestRoute = routes[0];
-        for(let index = 0; index < routes.length - 1; index++) {
+        for(let index = 1; index < routes.length - 1; index++) {
             const route = routes[index];
             if(routeLengthInKilometers(currentShortestRoute) < routeLengthInKilometers(route)) {
                 currentShortestRoute = route;
@@ -143,9 +143,8 @@ function shortestRoute(routes) {
 
 function routeCostInEuros(route) {
     const pricePerKilometers = 0.19;
-    return routeLengthInKilometers(route) * pricePerKilometers;
+    routeLengthInKilometers(route) * pricePerKilometers;
 }
-
 
 const amsterdamArnhemRoutes = routes("Amsterdam", "Arnhem");
 console.log(amsterdamArnhemRoutes);
@@ -155,5 +154,5 @@ console.log(
     "Our route:",
     shortestAmsterdamArnhemRoute,
     "is",
-    routeLengthInKilometers(shortestAmsterdamArnhemRoute),
-    "km");
+    routeLengthInKilometers(shortestAmsterdamArnhemRoute) + " km",
+    ", costing €" + routeCostInEuros(shortestAmsterdamArnhemRoute));
