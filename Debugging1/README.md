@@ -142,17 +142,3 @@ summarize:
 2. You learned that a bug can cause a failure in your program.
 3. You learned how to use `console.log` to look at the program state to find the bug.
 4. But most of all: don't panic! :)
-
-## Notes
-
-- Foute html code fixen, diff checker
-- Debugger behandelen
-- Wanneer geven we de les? week 4 javascript (DOM manipulation challenge, array strings, clicks)
-- Iets debuggen wat lijkt op het huiswerk
-- Debuggen incorporeren in het curriculum
-- Linkje naar debugging in de week 4 javascript MAKEME, en later nog een keer. 
-    - Sessie wanneer ze met async requests aan de gang gaan
-- Meest waardevol: code samen schrijven en daarna de code aan ze geven om de bugs op te lossen
-    - samen één bug oplossen
-    - laat ze zelf bugs oplossen (er zitten nog 5-10 overige bugs in)
-    - groepshuiswerk (in teams van twee, het team die het als eerst oplost wint een prijs)
