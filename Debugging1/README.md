@@ -73,7 +73,7 @@ at where the code is that caused this problem.
 
 ## Inspecting state
 
-A bug will always result in unexpected program state.Remember that the program
+A bug will always result in unexpected program state. Remember that the program
 state (or state) consists of all the variables and their contents. 
 
 **Question:** What state should we log and where do we put the `console.log` lines?
