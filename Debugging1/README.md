@@ -1,35 +1,44 @@
 # Debugging Lecture 1
 
 Nobody writes programs that are correct the first time around. Today we'll learn
-about debugging: the act of finding and fixing bugs in your code. In your career
-as a programmer you'll discover and fix many bugs and you'll debug code by other
-programmers. Learning how to debug a program is an essential skill for any
-programmer. Throughout the entire curriculum you will get homework/exercises
-that require you to fix buggy programs.
+about debugging: the act of finding and fixing problems in your code. In your
+career as a programmer you'll discover and fix many problems and you'll debug
+code by other programmers. Learning how to debug a program is an essential skill
+for any programmer.
 
-What is a bug? A bug lets a program do something it was not intended to do. But
-that definition is rather vague. Let's break it down. Following
-Zeller<sup>1</sup> a bug consist of three distinct parts:
+These problems are generally referred to as bugs, but why do we call them bugs?
+Well, the reason is probably because Grace Hopper, one of the famous and one of
+the first programmers, frequently recounted a story where in 1945 a real moth was
+found in one of the computers. The people who found the moth kept the insect and
+added it to the logbook with the subtext: "First actual case of bug being
+found." The term stuck around and we still use it today to refer to problems in
+code.
 
-1. A **defect** - "a piece of code that can cause an infection."<sup>1</sup>
+![A real bug](./images/first-bug.jpg)
 
-*We can think of a **defect** as the source of a disease.*
+*"First actual case of bug being found"* :joy:
 
-2. An **infection** - "a program state that is different from the programmer's
-intention."<sup>1</sup>
+## Becoming Sherlock Holmes
 
-*From the source of the disease an **infection** takes place. Someone will take 
-ill and in turn that person will make more and more people ill and so on.*
+Take off your programmer hats and put on your Sherlock hat cause we're going to
+treat our code as a crime scene.
 
-3. A **failure** - "externally observable effect of faulty program behavior
-caused by the infection."<sup>1</sup>
+Let's say someone was murdered and Sherlock Holmes was called to solve the
+murder. Holmes enters the crime scene and will first look at the victim to see
+what happened. Quite quickly though he will start looking for objects that might
+have been used to commit this crime, and the objects that were used to prepare
+it. From this evidence he will try to imagine what exactly happened. This
+process is called deduction, taking one thing and thinking about what it
+logically implies: if a gun was found near the crime scene and a bullet of the
+gun was found on the victim we can logically conclude the gun was the murder
+weapon.
 
-*When we notice someone took ill we know that there has been an infection and
-that there must have been a source somewhere.*
+We're gonna do exactly the same! Except we're not gonna murder anyone and our
+crime scene is not in the real world but in the virtual world of code.
 
 ## Hello wordl
 
-Let's look at this program. It has a defect in it:
+Let's look at this program. It has a bug in it:
 
 ```js
 // This program should log `hackyourfuture`
@@ -44,16 +53,12 @@ console.log(result);
 
 ## Reading failures
 
-To debug our code we have to become a bit like Sherlock Holmes. We have to
-question everything. Our code is wrong and we can't trust it anymore. Be
-suspicious while debugging, it helps you get into the right mindset.
-
 Debugging always starts by reading either some failure message or look at
 something you didn't expect. Now, what a lot of people do is throw their hands
 in the air and say: "aahhhh, it's not working!". Don't do that. Something is not
 working, you don't know what, but you're gonna find out. Most likely most of
 your code is perfectly fine, but you just made a mistake somewhere. Reading the
-error is the absolute first step and the first clue to where your defect might
+error is the absolute first step and the first clue to where your bug might
 be hiding.
 
 Let's run our program to see what it does:
@@ -64,27 +69,18 @@ console.log(result); // the observable failure: `hackyourfutureundefined`
 
 Quite simply we expect `hackyourfuture` to be logged but instead we got
 `hackyourfutureundefined`. This is our failure, now we need start looking
-at where our program got infected.
+at where the code is that caused this problem.
 
-## Tracking infections
+## Inspecting state
 
-A defect will always result in one or multiple infections. Remember that an
-infection is some program state that is different from what we intended it to
-be. The program state (or state) consists of all the variables and
-their contents. 
+A bug will always result in unexpected program state. Remember that the program
+state (or state) consists of all the variables and their contents. 
 
-**Questions:**
-1. In the code we're currently debugging, what is the state?
-2. Why would we want to look at the state? How does that help us get closer to
-   the defect?
-3. We can look at the state using `console.log`. Where should we write a
-   `console.log` line?
-4. What state should we log?
-5. What is going to be the output of our `console.log` line?
+**Question:** What state should we log and where do we put the `console.log` lines?
 
-To find the defect we first need to look at the state to see what got infected.
-To do this we add a `console.log` line to our code where we let the program
-write down our state every time we do a lookup in the `elements` array.
+To find the bug we first need to look at the state to see what's off. To do this
+we add a `console.log` line to our code where we let the program write down our
+state every time we do a lookup in the `elements` array.
 
 ```js
 result += elements[index];
@@ -103,68 +99,30 @@ hackyourfutureundefined
 
 We see that at index `3` when we do a lookup in our `elements` array. The
 element isn't there and javascript gives us the `undefined` value instead. 
+If we know that `index` has the wrong value we can look at the code that 
+affects `index`.
 
-**Question:** Based on this information where do you think the first infection
-happened?
-
-`index++` is where the infection happens as a result of our defect, whatever
-that defect may be.
-
-**Question:** What other state got infected?
+**Question:** What other state got affected by our bug?
 
 Because we add `undefined` (through `result += elements[index]`) to `result`,
-the `result` variable is now infected as well.
+the `result` variable is now affected as well.
 
-## Finding and fixing a defect
+## Finding and fixing a bug
 
-Why would `index` become `3` in the first place? If we can answer that question
-we get closer to the defect. Let's look at what the `for` loop does:
+Ofcourse our `for` loop is the code messing with the `index` and we can easily
+see the condition is wrong and should be `index < elements.length` instead.
 
 ```js
 for (let index = 0; index <= elements.length; index++)
 ```
 
-A `for` loop is a very useful construct but also quite complicated. We can think
-of a `for` loop as a specific kind of `while` loop.
-
-**Question:** how could we write the `for` loop in terms of a `while` loop?
-
-```js
-let index = 0;
-while(index <= elements.length) {
-    result += elements[index];
-    index = index + 1; // Same as index++
-}
-```
-
-The line `while(index <= elements.length)` prevents this program from looping
-infinitely until the end of time and instead only runs until `index` reaches a
-certain value. We know that when `index` is `3` it's infected. 
-
-**Question:** in what other place(s) do we find the number `3`?
-
-We also know that `elements.length` is also `3` because it contains three
-elements. We can now deduce that our defect is in the `index <= elements.length`
-statement and in fact it should have been:
-
-```js
-index < elements.length
-```
-
-**Question:** what would the output of the following program be? Is there a bug?
-If so, what's the defect?
-
-```js
-// This program should print:
-// hackyourfuture
-
-let elements = ["hack", "your", "future"];
-let result = "";
-for (let index = 1; index < elements.length; index++) {
-    result += elements[index];
-}
-console.log(result);
-```
+With this simple example you can see that even though the code is small and the
+bug is quite obvious there's a difference from where we observe a failure in our
+program and the code that caused it. It's important to always remember this,
+with more complex bugs there's often a bigger distance (in code) between the
+code that caused the failure and the code that has a bug in it. The code that
+caused the failure can often be perfectly fine, but the code that has a bug
+never is.
 
 *Background: These types of bugs are called off-by-one bugs and are in fact
 quite common. In our first buggy program we were expecting the value `3` to
@@ -173,7 +131,7 @@ counting at `0`. The 3rd element corresponds to the `index` variable being equal
 to `2`.*
 
 **Question:** if there has never been a failure in your program does that mean
-that there are no defects in it? Motivate your answer.
+that there are no bugs in it? Motivate your answer.
 
 ## Summary
 
@@ -181,13 +139,6 @@ We covered a lot of ground in this lecture, introducing many new concepts. To
 summarize:
 
 1. You learned that bugs are part of a programmer's life.
-2. You learned that a bug consists of three distinct parts:
-    1. A defect.
-    2. One or multiple infections.
-    3. An observable failure.
-3. You learned how to use `console.log` to look for infections to lead you to
-   the defect.
+2. You learned that a bug can cause a failure in your program.
+3. You learned how to use `console.log` to look at the program state to find the bug.
 4. But most of all: don't panic! :)
-
-<sup>1</sup> Zeller, Andreas - Why Programs Fail, Second Edition: A Guide to
-Systematic Debugging (2009)
